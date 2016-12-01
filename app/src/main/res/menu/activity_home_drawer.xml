@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_my_poll"
+            android:icon="@drawable/ic_menu_my_votes"
+            android:title="My Polls" />
+        <item
+            android:id="@+id/nav_following"
+            android:icon="@drawable/ic_menu_following"
+            android:title="Following" />
+        <item
+            android:id="@+id/nav_price"
+            android:icon="@drawable/ic_menu_price"
+            android:title="Plan And Price" />
+        <item
+            android:id="@+id/nav_privacy"
+            android:icon="@drawable/ic_menu_privacy"
+            android:title="Privacy" />
+        <item
+            android:id="@+id/nav_terms"
+            android:icon="@drawable/ic_menu_terms"
+            android:title="Terms and Conditions" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_contact"
+                android:icon="@drawable/ic_menu_contact"
+                android:title="Contact Us" />
+        </menu>
+    </item>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_about_us"
+            android:title="About Us" />
+    </group>
+
+
+
+</menu>
