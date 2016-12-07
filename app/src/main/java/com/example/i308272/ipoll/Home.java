@@ -1,8 +1,11 @@
 package com.example.i308272.ipoll;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class Home extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+                    PriceFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +88,26 @@ public class Home extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.nav_following) {
 
+        } else if (id == R.id.nav_price) {
+            // Plan and Pricing
+            Fragment _frgPrice = new PriceFragment();
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(
+                    R.id.content_home,
+                    _frgPrice,
+                    _frgPrice.getTag()
+            ).commit();
+
         } else if (id == R.id.nav_privacy) {
 
+            // Privicy
+
+            Fragment _frgPrivacy = new PrivacyFragment();
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(
+                    R.id.content_home,
+                    _frgPrivacy,
+            _frgPrivacy.getTag()).commit();
         } else if (id == R.id.nav_terms) {
 
         } else if (id == R.id.nav_share) {
@@ -99,4 +121,9 @@ public class Home extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void onFragmentInteraction()
+    {
+    }
+
 }
