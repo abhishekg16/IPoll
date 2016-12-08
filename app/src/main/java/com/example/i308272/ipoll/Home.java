@@ -18,7 +18,10 @@ import android.view.MenuItem;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-                    PriceFragment.OnFragmentInteractionListener{
+                    PriceFragment.OnFragmentInteractionListener,
+                    ContactUsFragment.OnFragmentInteractionListener,
+                    ShareFragment.OnFragmentInteractionListener
+                    {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,14 +110,33 @@ public class Home extends AppCompatActivity
             fm.beginTransaction().replace(
                     R.id.content_home,
                     _frgPrivacy,
-            _frgPrivacy.getTag()).commit();
+                    _frgPrivacy.getTag()).commit();
         } else if (id == R.id.nav_terms) {
 
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_contact)
-        {
-
+            Fragment _frgShare = new ShareFragment();
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(
+                    R.id.content_home,
+                    _frgShare,
+                    _frgShare.getTag()
+            ).commit();
+        } else if (id == R.id.nav_contact) {
+            Fragment _frgContactUs = new ContactUsFragment();
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(
+                    R.id.content_home,
+                    _frgContactUs,
+                    _frgContactUs.getTag()
+            ).commit();
+        } else if (id == R.id.nav_about_us){
+            Fragment _frgAboutUs = new AboutUsFragment();
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(
+                    R.id.content_home,
+                    _frgAboutUs,
+                    _frgAboutUs.getTag()
+            ).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -124,6 +146,11 @@ public class Home extends AppCompatActivity
 
     public void onFragmentInteraction()
     {
+    }
+
+    public void onFragmentInteraction(Uri uri)
+    {
+
     }
 
 }
