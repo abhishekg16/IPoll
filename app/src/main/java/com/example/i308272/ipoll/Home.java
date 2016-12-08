@@ -102,9 +102,7 @@ public class Home extends AppCompatActivity
             ).commit();
 
         } else if (id == R.id.nav_privacy) {
-
             // Privicy
-
             Fragment _frgPrivacy = new PrivacyFragment();
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(
@@ -112,7 +110,14 @@ public class Home extends AppCompatActivity
                     _frgPrivacy,
                     _frgPrivacy.getTag()).commit();
         } else if (id == R.id.nav_terms) {
-
+            // Terms and Conditions
+            Fragment _frgTerms = new TermsFragment();
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().replace(
+                    R.id.content_home,
+                    _frgTerms,
+                    _frgTerms.getTag()
+            ).commit();
         } else if (id == R.id.nav_share) {
             Fragment _frgShare = new ShareFragment();
             FragmentManager fm = getSupportFragmentManager();

@@ -15,17 +15,15 @@
         This videos tell what you can do through iPOll
     </string>
 
-     <string name="fragment_privacy"> <p style="text-align:justify"><b>iPoll</b> is survey platform where you
+    <string name="fragment_privacy"> <p style="text-align:justify"><b>iPoll</b> is survey platform where you
         can create polls and collect response of your audience. We have different plan
         ranging from free plan which provided limited facility to diamoand plan which
         provides all kind of tech support.
         This videos tell what you can do through iPoll</p>
     </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="fragment_price"><center>It\'s \n Absolutely \n Free </center> </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_terms">Terms and Conditions</string>
 
 </resources>
