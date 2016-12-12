@@ -16,13 +16,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.i308272.ipoll.dummy.DummyContent;
+
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                     PriceFragment.OnFragmentInteractionListener,
                     ContactUsFragment.OnFragmentInteractionListener,
-                    ShareFragment.OnFragmentInteractionListener
+                    ShareFragment.OnFragmentInteractionListener,
+                    PollFragment.OnListFragmentInteractionListener
                     {
 
+
+    PollFragment poolList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +52,14 @@ public class Home extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        PollFragment _frgPollList = new PollFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(
+                R.id.content_home,
+                _frgPollList,
+                _frgPollList.getTag()
+        ).commit();
     }
 
     @Override
@@ -119,6 +132,7 @@ public class Home extends AppCompatActivity
                     _frgTerms.getTag()
             ).commit();
         } else if (id == R.id.nav_share) {
+            // Share
             Fragment _frgShare = new ShareFragment();
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(
@@ -127,6 +141,7 @@ public class Home extends AppCompatActivity
                     _frgShare.getTag()
             ).commit();
         } else if (id == R.id.nav_contact) {
+            // Contact Us
             Fragment _frgContactUs = new ContactUsFragment();
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(
@@ -135,6 +150,7 @@ public class Home extends AppCompatActivity
                     _frgContactUs.getTag()
             ).commit();
         } else if (id == R.id.nav_about_us){
+            // About Us
             Fragment _frgAboutUs = new AboutUsFragment();
             FragmentManager fm = getSupportFragmentManager();
             fm.beginTransaction().replace(
@@ -153,7 +169,11 @@ public class Home extends AppCompatActivity
     {
     }
 
-    public void onFragmentInteraction(Uri uri)
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    public void onListFragmentInteraction(DummyContent.DummyItem item)
     {
 
     }
