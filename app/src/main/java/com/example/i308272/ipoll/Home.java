@@ -53,13 +53,16 @@ public class Home extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        PollFragment _frgPollList = new PollFragment();
-        FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(
-                R.id.content_home,
-                _frgPollList,
-                _frgPollList.getTag()
-        ).commit();
+        if (savedInstanceState == null) {
+            PollFragment _frgPollList = new PollFragment();
+            FragmentManager fm = getSupportFragmentManager();
+            //fm.popBackStack();
+            fm.beginTransaction().replace(
+                    R.id.content_fragment,
+                    _frgPollList,
+                    _frgPollList.getTag()
+            ).commit();
+        }
     }
 
     @Override
@@ -108,56 +111,63 @@ public class Home extends AppCompatActivity
             // Plan and Pricing
             Fragment _frgPrice = new PriceFragment();
             FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(
-                    R.id.content_home,
+            getSupportFragmentManager().popBackStack();
+            fm.beginTransaction().add(
+                    R.id.content_fragment,
                     _frgPrice,
                     _frgPrice.getTag()
-            ).commit();
+            ).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_privacy) {
             // Privicy
             Fragment _frgPrivacy = new PrivacyFragment();
             FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(
-                    R.id.content_home,
+            getSupportFragmentManager().popBackStack();
+            fm.beginTransaction().add(
+                    R.id.content_fragment,
                     _frgPrivacy,
-                    _frgPrivacy.getTag()).commit();
+                    _frgPrivacy.getTag()
+            ).addToBackStack(null).commit();
         } else if (id == R.id.nav_terms) {
             // Terms and Conditions
             Fragment _frgTerms = new TermsFragment();
             FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(
-                    R.id.content_home,
+            getSupportFragmentManager().popBackStack();
+            fm.beginTransaction().add(
+                    R.id.content_fragment,
                     _frgTerms,
                     _frgTerms.getTag()
-            ).commit();
+            ).addToBackStack(null).commit();
         } else if (id == R.id.nav_share) {
             // Share
             Fragment _frgShare = new ShareFragment();
             FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(
-                    R.id.content_home,
+            getSupportFragmentManager().popBackStack();
+            fm.beginTransaction().add(
+                    R.id.content_fragment,
                     _frgShare,
                     _frgShare.getTag()
-            ).commit();
+            ).addToBackStack(null).commit();
         } else if (id == R.id.nav_contact) {
             // Contact Us
             Fragment _frgContactUs = new ContactUsFragment();
             FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(
-                    R.id.content_home,
+            getSupportFragmentManager().popBackStack();
+            fm.beginTransaction().add(
+                    R.id.content_fragment,
                     _frgContactUs,
                     _frgContactUs.getTag()
-            ).commit();
+            ).addToBackStack(null).commit();
         } else if (id == R.id.nav_about_us){
             // About Us
             Fragment _frgAboutUs = new AboutUsFragment();
             FragmentManager fm = getSupportFragmentManager();
-            fm.beginTransaction().replace(
-                    R.id.content_home,
+            getSupportFragmentManager().popBackStack();
+            fm.beginTransaction().add(
+                    R.id.content_fragment,
                     _frgAboutUs,
                     _frgAboutUs.getTag()
-            ).commit();
+            ).addToBackStack(null).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
