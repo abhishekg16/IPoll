@@ -11,9 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.i308272.ipoll.dummy.DummyContent;
-import com.example.i308272.ipoll.dummy.DummyContent.DummyItem;
-
-import java.util.List;
+import com.example.i308272.ipoll.dummy.DummyContent.PollListItem;
 
 /**
  * A fragment representing a list of Items.
@@ -104,6 +102,6 @@ public class PollFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(PollListItem item);
     }
 }
