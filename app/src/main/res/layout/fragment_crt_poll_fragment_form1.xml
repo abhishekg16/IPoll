@@ -1,0 +1,79 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrtPollFragmentForm1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="16dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:text="Question"
+                    android:layout_width="match_parent"
+                    android:layout_height="57dp"
+                    android:id="@+id/fmtCrtPollForm1_tvQuestion"
+                    android:layout_alignParentTop="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="Enter You Question"
+                    android:ems="10"
+                    android:id="@+id/fmtCrtPollForm1_etQuestion"
+                    android:lines="3"
+                    android:layout_alignBottom="@id/fmtCrtPollForm1_tvQuestion"/>
+
+                <TextView
+                    android:text="Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fmtCrtPollForm1_tvDescription"
+                    android:layout_alignBottom="@id/fmtCrtPollForm1_etQuestion"
+                    android:textAppearance="@style/TextAppearance.AppCompat"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:minLines="5"
+                    android:ems="10"
+                    android:id="@+id/fmtCrtPollForm1_etDescription"
+                    android:layout_below="@id/fmtCrtPollForm1_tvDescription"
+                    android:hint="Enter Description (500 Chars)" />
+
+                <TextView
+                    android:text="Categories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fmtCrtPollForm1_tvCategories"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/fmtCrtPollForm1_etCategories"
+                    android:hint="Enter Categories"
+                    android:layout_weight="2.97" />
+            </LinearLayout>
+
+        <Button
+                android:text="Next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/fmtCrtPOllForm1_btNext" />
+        </RelativeLayout>
+</FrameLayout>

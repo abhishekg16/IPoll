@@ -1,11 +1,13 @@
 package com.example.i308272.ipoll;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.i308272.ipoll.dummy.DummyContent;
 
@@ -28,8 +31,17 @@ public class Home extends AppCompatActivity
 
 
     PollFragment poolList;
+
+    private final String TAG = this.getClass().getName();
+
+    //OnCreate method is called when activity is created
+    // Notice that this method is also called when the
+    // activity have to be recreated for example orientation
+    // Change
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG,"OnCreate Called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -53,7 +65,15 @@ public class Home extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // This check is very important. We the configutation of the app changes
+        // ( orientation, resolution or language) the activity is recreated
+        // ( system calls onDestroy() follow by onCreate()). If the activity is
+        // recreated we should not crate a new Fragment object.
+        // Note that when activity is being recreated it's associated fragments
+        // would also had been recreated. So recreating fragment and attaching
+        // them to activity would
         if (savedInstanceState == null) {
+            // Create Fragment only when activity is created first time
             PollFragment _frgPollList = new PollFragment();
             FragmentManager fm = getSupportFragmentManager();
             //fm.popBackStack();
@@ -64,6 +84,57 @@ public class Home extends AppCompatActivity
             ).commit();
         }
     }
+
+    // All these following lifeCycle Method has been implemented for
+    // bebugging purpose only
+
+    // Start LifeCycle Method
+    // As soon as the
+    @Override
+    protected void onStart() {
+        Log.d(TAG,"OnStartClassed");
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d(TAG,"OnResume");
+        super.onResume();
+    }
+    // The Activity is also paused in case of the orientation or configuration changes
+    // As soon as the focus moves out of the Activity
+    // For example Once we click the button to see the minimized
+    // Apps the OnPause method is called.
+    // You should save all data which you thing might be necessary is use will
+    // come back.
+    @Override
+    protected void onPause() {
+        Log.d(TAG,"OnPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.d(TAG,"OnRestart");
+        super.onRestart();
+    }
+
+    // Once the orientation changes this method is also called after the onPause Method
+    @Override
+    protected void onStop() {
+        Log.d(TAG,"OnStop");
+        super.onStop();
+    }
+
+    // Activity hits destroy in case of the orientation change
+    // This can be last call in the activity life cycle you should relase all the resouces
+    // You have acquired.
+    @Override
+    protected void onDestroy() {
+        Log.d(TAG,"OnDestroy");
+        super.onDestroy();
+    }
+    // End LifeCycle Purpose.
 
     @Override
     public void onBackPressed() {
@@ -91,6 +162,12 @@ public class Home extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(this,"Click", Toast.LENGTH_LONG).show();
+
+            // Start the Create poll activity
+            Intent createPollActivity = new Intent(this,CreatePoll.class);
+            startActivity(createPollActivity);
+
             return true;
         }
 
@@ -175,17 +252,12 @@ public class Home extends AppCompatActivity
         return true;
     }
 
-    public void onFragmentInteraction()
-    {
+    public void onFragmentInteraction() {
     }
 
     public void onFragmentInteraction(Uri uri) {
-
     }
 
-    public void onListFragmentInteraction(DummyContent.PollListItem item)
-    {
-
+    public void onListFragmentInteraction(DummyContent.PollListItem item) {
     }
-
 }

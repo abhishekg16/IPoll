@@ -1,0 +1,123 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.i308272.ipoll.CrtPollFragmentForm2">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="Create Options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fmtCrtPollForm2_tv_option"
+            android:textSize="30sp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fmtCrtPollForm2_tab_option">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fmtCrtPollForm2_tv_option1" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/fmtCrtPollForm2_et_option1"
+                    android:hint="Enter Option" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:text="B"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fmtCrtPollForm2_tv_option2" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/fmtCrtPollForm2_et_option2"
+                    android:hint="Enter Option" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:text="B"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fmtCrtPollForm2_tv_option3" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/fmtCrtPollForm2_et_option3"
+                    android:hint="Enter Option" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:text="Add More Options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fmtCrtPollForm2_bt_add_options" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fmtCrtPollForm2_tv_allow_comments"
+            android:text="More Options"
+            android:textSize="30sp"
+            android:lineSpacingExtra="10sp" />
+
+        <CheckBox
+            android:text="Multi Choice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fmtCrtPOllForm2_cbMultiChoice" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fmtCrtPollForm2_cb_allow_comments"
+            android:checked="true"
+            android:text="Allow Comments"
+            android:contentDescription="If you wan to allow comments please select this check box" />
+
+        <Button
+            android:text="Next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fmtCrtPollForm2_bt_next" />
+    </LinearLayout>
+
+</FrameLayout>
