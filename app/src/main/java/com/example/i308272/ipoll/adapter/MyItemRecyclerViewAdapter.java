@@ -1,28 +1,28 @@
-package com.example.i308272.ipoll;
+package com.example.i308272.ipoll.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.i308272.ipoll.PollFragment.OnListFragmentInteractionListener;
-import com.example.i308272.ipoll.dummy.DummyContent.PollListItem;
+import com.example.i308272.ipoll.R;
+import com.example.i308272.ipoll.model.DisplayList.DisplayListItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link PollListItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link DisplayListItem} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<PollListItem> mValues;
+    private final List<DisplayListItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyItemRecyclerViewAdapter(List<PollListItem> items, OnListFragmentInteractionListener listener) {
+    public MyItemRecyclerViewAdapter(List<DisplayListItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -61,14 +61,15 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
         public final View mView;
+
         public final TextView mQuestion;
         public final TextView mDescription;
         public final TextView mLikes;
         public final TextView mComments;
         public final TextView mVotes;
-
-        public PollListItem mItem;
+        public DisplayListItem mItem;
 
         public ViewHolder(View view) {
             super(view);

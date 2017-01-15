@@ -1,12 +1,17 @@
-package com.example.i308272.ipoll;
+package com.example.i308272.ipoll.createPoll;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+
+import com.example.i308272.ipoll.R;
+import com.example.i308272.ipoll.model.CrtPollForm2Data;
 
 
 /**
@@ -26,6 +31,8 @@ public class CrtPollFragmentForm2 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private View fmtForm2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,21 +71,61 @@ public class CrtPollFragmentForm2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_crt_poll_fragment_form2, container, false);
+        fmtForm2 =  (View)inflater.inflate(R.layout.fragment_crt_poll_fragment_form2, container, false);
+
+        // add listener to add more options button
+        Button addMoreOptionButton = (Button) fmtForm2.findViewById(R.id.fmtCrtPollForm2_bt_add_options);
+        addMoreOptionButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                onAddMoreOptionsClicked(view);
+            }
+        });
+        Button nextButton = (Button) fmtForm2.findViewById(R.id.fmtCrtPollForm2_bt_next);
+        nextButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onNextButtonPressed(v);
+            }
+        });
+        return fmtForm2;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onNextButtonPressed(Uri uri) {
+    public void onNextButtonPressed(View v) {
         if (mListener != null) {
             // Fetch the Data from view fields and populate them
+            CrtPollForm2Data formData = new CrtPollForm2Data();
+            // Right not we have fixed to only four options later
+            // we need to modify this code to take care of this limitation
 
-            mListener.onFragmentInteraction(uri);
+            // Pick options
+            EditText option1 = (EditText) fmtForm2.findViewById(R.id.fmtCrtPollForm2_et_option1);
+            EditText option2 = (EditText) fmtForm2.findViewById(R.id.fmtCrtPollForm2_et_option2);
+            EditText option3 = (EditText) fmtForm2.findViewById(R.id.fmtCrtPollForm2_et_option3);
+            EditText option4 = (EditText) fmtForm2.findViewById(R.id.fmtCrtPollForm2_et_option4);
+
+            // Check boxes
+            boolean isMultiChoice = ((CheckBox) fmtForm2.findViewById(R.id.fmtCrtPOllForm2_cbMultiChoice)).isChecked();
+            boolean isAllowComments = ((CheckBox) fmtForm2.findViewById(R.id.fmtCrtPollForm2_cb_allow_comments)).isChecked();
+
+            formData.set_option(option1.toString());
+            formData.set_option(option2.toString());
+            formData.set_option(option3.toString());
+            formData.set_option(option4.toString());
+
+            mListener.onFragmentInteractionForm2(formData);
         }
         else
         {
 
         }
 
+    }
+
+
+    public void onAddMoreOptionsClicked(View v){
+        // Need to be implemented
     }
 
     @Override
@@ -110,6 +157,6 @@ public class CrtPollFragmentForm2 extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteractionForm2(CrtPollForm2Data formData);
     }
 }

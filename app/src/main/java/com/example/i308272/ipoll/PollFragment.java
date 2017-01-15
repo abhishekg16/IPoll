@@ -6,12 +6,24 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.i308272.ipoll.dummy.DummyContent;
-import com.example.i308272.ipoll.dummy.DummyContent.PollListItem;
+
+import com.example.i308272.ipoll.adapter.MyItemRecyclerViewAdapter;
+import com.example.i308272.ipoll.model.DisplayList;
+import com.example.i308272.ipoll.model.DisplayList.DisplayListItem;
+import com.example.i308272.ipoll.network.RetrofitClient;
+import com.example.i308272.ipoll.network.model.ListItem;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * A fragment representing a list of Items.
@@ -19,13 +31,18 @@ import com.example.i308272.ipoll.dummy.DummyContent.PollListItem;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class PollFragment extends Fragment {
+public class PollFragment extends Fragment
+        implements Callback<List<ListItem>> {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    private RetrofitClient networkClient;
+    MyItemRecyclerViewAdapter mAdapter;
+
+    public final String TAG = this.getClass().getName();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -47,10 +64,13 @@ public class PollFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (networkClient == null) {
+            networkClient = new RetrofitClient(this);
+        }
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+        networkClient.getDisplayList();
     }
 
     @Override
@@ -67,9 +87,17 @@ public class PollFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            // Get the list of items - Once you get the update the recycler view
+
+            mAdapter = new MyItemRecyclerViewAdapter(DisplayList.ITEMS,
+                                    mListener);
+            recyclerView.setAdapter(mAdapter);
         }
         return view;
+    }
+
+    public void notifyDataChange(){
+        mAdapter.notifyDataSetChanged();
     }
 
 
@@ -102,6 +130,46 @@ public class PollFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(PollListItem item);
+        void onListFragmentInteraction(DisplayListItem item);
+    }
+
+
+    // Retrofit call back method
+    @Override
+    public void onResponse(Call<List<ListItem>> call,
+                           Response<List<ListItem>>
+                                   response) {
+
+        if(response == null){
+            Log.d(TAG,"Network Error : Response Object is null");
+        }
+        if(response.code() == 200) {
+            List<ListItem> items = response.body();
+            // You got the data send it to the UI thread to take care.
+            for (int i = 0; i < items.size(); i++) {
+                System.out.print(items.get(i).getQuestion_text());
+                Log.d(TAG,items.get(i).getQuestion_text());
+
+                // Crate the object of diplay list
+                DisplayList.DisplayListItem item = new DisplayList.DisplayListItem(
+                        items.get(i).getQuestion_id(),
+                        items.get(i).getQuestion_text(),
+                        "Description",
+                        1,
+                        1,
+                        1
+                );
+                DisplayList.ITEMS.add(item);
+            }
+            mAdapter.notifyDataSetChanged();
+        }
+        else {
+            Log.d(TAG,"Error : Response code is " + response.code());
+        }
+    }
+
+    @Override
+    public void onFailure(Call<List<ListItem>> call, Throwable t) {
+        Log.d(TAG,"Could not fetch data");
     }
 }

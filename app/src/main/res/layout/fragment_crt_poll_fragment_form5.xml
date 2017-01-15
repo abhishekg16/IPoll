@@ -2,12 +2,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.i308272.ipoll.CrtPollFragmentForm5">
+    tools:context="com.example.i308272.ipoll.createPoll.CrtPollFragmentForm5"
+    android:background="?android:windowBackground">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="I-Number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fmtCrtPollForm5_tvInumber"
+            android:textSize="36sp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fmtCrtPollForm5_tvInumberValu"
+            android:textSize="30sp" />
+
+        <TextView
+            android:text="PassCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fmtCrtPollForm5_tvPasscode"
+            android:textSize="36sp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fmtCrtPollForm5_tvInumberValue"
+            android:textSize="30sp" />
+    </LinearLayout>
 
 </FrameLayout>

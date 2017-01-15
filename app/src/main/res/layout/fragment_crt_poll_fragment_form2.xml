@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.i308272.ipoll.CrtPollFragmentForm2">
+    tools:context="com.example.i308272.ipoll.createPoll.CrtPollFragmentForm2"
+    android:background="?android:windowBackground">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -83,6 +84,25 @@
 
             </TableRow>
 
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:text="B"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fmtCrtPollForm2_tv_option4" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/fmtCrtPollForm2_et_option4"
+                    android:hint="Enter Option" />
+
+            </TableRow>
         </TableLayout>
 
         <Button

@@ -1,4 +1,4 @@
-package com.example.i308272.ipoll;
+package com.example.i308272.ipoll.navigation;
 
 
 import android.os.Bundle;
@@ -7,14 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.i308272.ipoll.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PrivacyFragment extends Fragment {
+public class AboutUsFragment extends Fragment {
 
 
-    public PrivacyFragment() {
+    public AboutUsFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +25,7 @@ public class PrivacyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_privacy, container, false);
+        return inflater.inflate(R.layout.fragment_about_us, container, false);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.i308272.ipoll;
+package com.example.i308272.ipoll.createPoll;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,16 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.i308272.ipoll.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CrtPollFragmentForm5.OnFragmentInteractionListener} interface
+ * {@link CrtPollFragmentForm4.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CrtPollFragmentForm5#newInstance} factory method to
+ * Use the {@link CrtPollFragmentForm4#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CrtPollFragmentForm5 extends Fragment {
+public class CrtPollFragmentForm4 extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +31,7 @@ public class CrtPollFragmentForm5 extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public CrtPollFragmentForm5() {
+    public CrtPollFragmentForm4() {
         // Required empty public constructor
     }
 
@@ -39,11 +41,11 @@ public class CrtPollFragmentForm5 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment CrtPollFragmentForm5.
+     * @return A new instance of fragment CrtPollFragmentForm4.
      */
     // TODO: Rename and change types and number of parameters
-    public static CrtPollFragmentForm5 newInstance(String param1, String param2) {
-        CrtPollFragmentForm5 fragment = new CrtPollFragmentForm5();
+    public static CrtPollFragmentForm4 newInstance(String param1, String param2) {
+        CrtPollFragmentForm4 fragment = new CrtPollFragmentForm4();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,13 +66,13 @@ public class CrtPollFragmentForm5 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_crt_poll_fragment_form5, container, false);
+        return inflater.inflate(R.layout.fragment_crt_poll_fragment_form4, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteractionForm4(uri);
         }
     }
 
@@ -103,6 +105,6 @@ public class CrtPollFragmentForm5 extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteractionForm4(Uri uri);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.i308272.ipoll;
+package com.example.i308272.ipoll.createPoll;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.i308272.ipoll.R;
 
 
 /**
@@ -70,7 +72,7 @@ public class CrtPollFragmentForm3 extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteractionForm3(uri);
         }
     }
 
@@ -103,6 +105,6 @@ public class CrtPollFragmentForm3 extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteractionForm3(Uri uri);
     }
 }

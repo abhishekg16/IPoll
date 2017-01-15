@@ -1,14 +1,18 @@
-package com.example.i308272.ipoll;
+package com.example.i308272.ipoll.createPoll;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
-import com.google.android.gms.plus.PlusOneButton;
+import com.example.i308272.ipoll.R;
+import com.example.i308272.ipoll.model.CrtPollForm1Data;
+
+import java.util.ArrayList;
 
 /**
  * A fragment with a Google +1 button.
@@ -31,6 +35,14 @@ public class CrtPollFragmentForm1 extends Fragment {
     private String mParam1;
     private String mParam2;
     //private PlusOneButton mPlusOneButton;
+
+    // Data to be saved
+    private String question;
+    private String description;
+    private ArrayList<String> categories;
+
+    //
+    private View fmtView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -69,16 +81,22 @@ public class CrtPollFragmentForm1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_crt_poll_fragment_form1, container, false);
+        fmtView = inflater.inflate(R.layout.fragment_crt_poll_fragment_form1, container, false);
+        Button bt = (Button) fmtView.findViewById(R.id.fmtCrtPOllForm1_btNext);
+        bt.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v){
+                                onNextButtonPressed(v);
+                            }
+        });
+
 
         // Set Title According to the current Fragment
         getActivity().setTitle("Question Details");
 
         // Get the view data and store the in the Private Object.
 
-
-
-        return view;
+        return fmtView;
     }
 
     @Override
@@ -89,12 +107,26 @@ public class CrtPollFragmentForm1 extends Fragment {
         //mPlusOneButton.initialize(PLUS_ONE_URL, PLUS_ONE_REQUEST_CODE);
     }
 
- /*   // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onNextButtonPressed(View view) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            // When the next button pressed pass the data to the parent activity
+            EditText qesView = (EditText)fmtView.findViewById(R.id.fmtCrtPollForm1_etQuestion);
+            EditText decView = (EditText)fmtView.findViewById(R.id.fmtCrtPollForm1_etDescription);
+            EditText categView = (EditText)fmtView.findViewById(R.id.fmtCrtPollForm1_etCategories);
+
+            question = qesView.getText().toString();
+            description = decView.getText().toString();
+           // categories.add(categView.getText().toString());
+
+            CrtPollForm1Data formData = new CrtPollForm1Data();
+            formData.setQuestion(question);
+            formData.setDescription(description);
+            formData.setCategories(categories);
+
+
+            mListener.onFragmentInteractionForm1(formData);
         }
-    }*/
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -125,7 +157,7 @@ public class CrtPollFragmentForm1 extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteractionForm1(CrtPollForm1Data formData);
     }
 
 }

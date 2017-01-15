@@ -19,7 +19,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.i308272.ipoll.dummy.DummyContent;
+import com.example.i308272.ipoll.createPoll.CreatePoll;
+import com.example.i308272.ipoll.model.DisplayList;
+import com.example.i308272.ipoll.navigation.AboutUsFragment;
+import com.example.i308272.ipoll.navigation.ContactUsFragment;
+import com.example.i308272.ipoll.navigation.PriceFragment;
+import com.example.i308272.ipoll.navigation.PrivacyFragment;
+import com.example.i308272.ipoll.navigation.ShareFragment;
+import com.example.i308272.ipoll.navigation.TermsFragment;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -65,6 +72,11 @@ public class Home extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //Fetch the data from internet as we will need that soon.
+
+
+
+
         // This check is very important. We the configutation of the app changes
         // ( orientation, resolution or language) the activity is recreated
         // ( system calls onDestroy() follow by onCreate()). If the activity is
@@ -92,7 +104,7 @@ public class Home extends AppCompatActivity
     // As soon as the
     @Override
     protected void onStart() {
-        Log.d(TAG,"OnStartClassed");
+            Log.d(TAG,"OnStartClassed");
         super.onStart();
     }
 
@@ -258,6 +270,6 @@ public class Home extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
     }
 
-    public void onListFragmentInteraction(DummyContent.PollListItem item) {
+    public void onListFragmentInteraction(DisplayList.DisplayListItem item) {
     }
 }

@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.i308272.ipoll.CrtPollFragmentForm3">
+    tools:context="com.example.i308272.ipoll.createPoll.CrtPollFragmentForm3"
+    android:background="?android:windowBackground">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -37,7 +38,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/fmtCrtPollForm3_cbNameOptional"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:checked="true" />
             </TableRow>
 
             <TableRow
@@ -57,7 +59,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/fmtCrtPollForm3_cbAgeOption"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:checked="true" />
             </TableRow>
 
             <TableRow
@@ -79,7 +82,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/fmtCrtPollForm3_cbGenderOption"
                     android:layout_weight="1"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:checked="true" />
 
 
             </TableRow>
@@ -89,16 +93,19 @@
                 android:layout_height="match_parent" >
 
                 <CheckBox
+                    android:text="Location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fmtCrtPollForm3_cbLocation"
+                    android:textSize="18sp" />
+
+                <CheckBox
                     android:text="Optional"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/fmtCrtPollForm3_cbLocation" />
-
-                <CheckBox
-                    android:text="CheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fmtCrtPollForm3_cbLocationOptional" />
+                    android:id="@+id/fmtCrtPollForm3_cbLocationOptional"
+                    android:textSize="18sp"
+                    android:checked="true" />
             </TableRow>
 
         </TableLayout>
