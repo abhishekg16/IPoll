@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.i308272.ipoll.createPoll.CreatePoll;
+import com.example.i308272.ipoll.displayQuestion.DisplayQuestion;
 import com.example.i308272.ipoll.model.DisplayList;
 import com.example.i308272.ipoll.navigation.AboutUsFragment;
 import com.example.i308272.ipoll.navigation.ContactUsFragment;
@@ -37,9 +38,10 @@ public class Home extends AppCompatActivity
                     {
 
 
-    PollFragment poolList;
+    //PollFragment poolList;
 
     private final String TAG = this.getClass().getName();
+    public static final String EXTRA_ID = "com.example.i308272.ipoll.model.ID";
 
     //OnCreate method is called when activity is created
     // Notice that this method is also called when the
@@ -271,5 +273,10 @@ public class Home extends AppCompatActivity
     }
 
     public void onListFragmentInteraction(DisplayList.DisplayListItem item) {
+        Toast.makeText(this,"ItemSelected",Toast.LENGTH_LONG);
+        // get the question Id and make a call to display the poll.
+        Intent intent = new Intent(this, DisplayQuestion.class);
+        intent.putExtra(EXTRA_ID, item.getId());
+        startActivity(intent);
     }
 }

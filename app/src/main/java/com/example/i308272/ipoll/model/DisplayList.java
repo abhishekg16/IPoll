@@ -24,28 +24,29 @@ public class DisplayList {
 
     private static final int COUNT = 30;
 
-    static {
+ /*   static {
         // As ass starts - fetch for list of items
         for (int i = 1; i <= COUNT; i++) {
             //addItem(createDummyItem(i));
 
         }
-    }
+    }*/
 
-    private static void addItem(DisplayListItem item) {
+/*    private static void addItem(DisplayListItem item) {
         //ITEMS.add(item);
-        //ITEM_MAP.put(item.id, item);
-    }
+        //ITEM_MAP.put(item.question_id, item);
+    }*/
 
-    private static DisplayListItem createDummyItem(int position) {
+    /*private static DisplayListItem createDummyItem(int position) {
         return new DisplayListItem(
+                "1",
                 position,
                 "What is population of india?",
                 "You have to guess the population of India",
                 20,
                 30,
                 200);
-    }
+    }*/
 
     private static String makeDetails(int position) {
         StringBuilder builder = new StringBuilder();
@@ -60,20 +61,24 @@ public class DisplayList {
      * A dummy item representing a piece of question.
      */
     public static class DisplayListItem {
-        public final long id;               /* unique Id a poll have */
-        public final String question;       /* question associated with that poll */
-        public final String description;    /* A small description related to poll */
-        public final int comments;          /* number of comments present for that poll*/
-        public final int likes;              /* number of likes for that poll*/
-        public final int votes;             /* number of votes for that poll */
+        private final String id;
+        private final long question_id;               /* unique Id a poll have */
+        private final String question;       /* question associated with that poll */
+        private final String description;    /* A small description related to poll */
+        private final int comments;          /* number of comments present for that poll*/
+        private final int likes;              /* number of likes for that poll*/
+        private final int votes;             /* number of votes for that poll */
 
-        public DisplayListItem(long id,
+        public DisplayListItem(
+                                String id,
+                               long question_id,
                                String content,
                                String details,
                                int comments,
                                int like,
                                int votes) {
             this.id = id;
+            this.question_id = question_id;
             this.question = content;
             this.description = details;
             this.comments = comments;
@@ -84,6 +89,34 @@ public class DisplayList {
         @Override
         public String toString() {
             return question;
+        }
+
+        public long getQuestion_id() {
+            return question_id;
+        }
+
+        public String getQuestion() {
+            return question;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public int getComments() {
+            return comments;
+        }
+
+        public int getLikes() {
+            return likes;
+        }
+
+        public int getVotes() {
+            return votes;
+        }
+
+        public String getId() {
+            return id;
         }
     }
 }

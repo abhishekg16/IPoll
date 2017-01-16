@@ -1,20 +1,20 @@
 package com.example.i308272.ipoll.network.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 
 /**
  * Created by I308272 on 1/15/2017.
  */
 
-public class ListItem {
-    public ListItem(String id,
-                    long question_id,
-                    String question_text,
-                    int views,
-                    int like,
-                    String status) {
-        this.id = id;
+public class ItemDetails {
+
+    public ItemDetails(ArrayList<String> options,
+                       long question_id,
+                       String question_text,
+                       int views,
+                       int like,
+                       String status) {
+        this.options = options;
         this.question_id = question_id;
         this.question_text = question_text;
         this.views = views;
@@ -62,35 +62,18 @@ public class ListItem {
         this.status = status;
     }
 
-    public String getId() {
-        return id;
+    public ArrayList<String> getOptions() {
+        return options;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOptions(ArrayList<String> options) {
+        this.options = options;
     }
-
-    @SerializedName("id")
-    @Expose
-    private String id;
-
-    @SerializedName("question_id")
-    @Expose
     private long question_id;
-
-    @SerializedName("question_text")
-    @Expose
     private String question_text;
-
-    @SerializedName("view")
-    @Expose
     private int views;
-
-    @SerializedName("like")
-    @Expose
     private int like;
-
-    @SerializedName("status")
-    @Expose
     private String status;
+    private ArrayList<String> options;
+
 }
