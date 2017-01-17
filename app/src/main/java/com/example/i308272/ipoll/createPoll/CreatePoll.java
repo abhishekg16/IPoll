@@ -6,10 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.i308272.ipoll.R;
-import com.example.i308272.ipoll.model.CrtPollForm1Data;
-import com.example.i308272.ipoll.model.CrtPollForm2Data;
-import com.example.i308272.ipoll.model.CrtPollForm3Data;
-import com.example.i308272.ipoll.model.CrtPollForm4Data;
+import com.example.i308272.ipoll.createPoll.model.CrtPollForm1Data;
+import com.example.i308272.ipoll.createPoll.model.CrtPollForm2Data;
+import com.example.i308272.ipoll.createPoll.model.CrtPollForm3Data;
+import com.example.i308272.ipoll.createPoll.model.CrtPollForm4Data;
 
 public class CreatePoll extends AppCompatActivity
                         implements  CrtPollFragmentForm1.OnFragmentInteractionListener,

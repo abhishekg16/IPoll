@@ -14,18 +14,17 @@ import android.view.ViewGroup;
 
 import com.example.i308272.ipoll.adapter.MyItemRecyclerViewAdapter;
 import com.example.i308272.ipoll.model.DisplayList;
-import com.example.i308272.ipoll.model.DisplayList.DisplayListItem;
+import com.example.i308272.ipoll.model.DisplayQuestionListItem;
 import com.example.i308272.ipoll.network.ApiUtils;
 import com.example.i308272.ipoll.network.InsightWebServiceApi;
-import com.example.i308272.ipoll.network.RetrofitClient;
-import com.example.i308272.ipoll.network.model.ListItem;
+import com.example.i308272.ipoll.network.model.RemoteQuestion;
+
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 /**
  * A fragment representing a list of Items.
@@ -129,34 +128,35 @@ public class PollFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        void onListFragmentInteraction(DisplayListItem item);
+        void onListFragmentInteraction(DisplayQuestionListItem item);
     }
 
 
     public void downloadDisplayList()
     {
-        Call<List<ListItem>> call = networkClient.getDisplayList();
-        call.enqueue(new Callback<List<ListItem>>() {
+        Call<List<RemoteQuestion>> call = networkClient.getQuestionList();
+        call.enqueue(new Callback<List<RemoteQuestion>>() {
             @Override
-            public void onResponse(Call<List<ListItem>> call, Response<List<ListItem>> response) {
+            public void onResponse(Call<List<RemoteQuestion>> call,
+                                   Response<List<RemoteQuestion>> response) {
 
                 if(response.isSuccessful()) {
-                    List<ListItem> items = response.body();
+
+                    List<RemoteQuestion> items = response.body();
+
                     // You got the data send it to the UI thread to take care.
                     for (int i = 0; i < items.size(); i++) {
-                        Log.d(TAG,items.get(i).getQuestion_text());
+                        RemoteQuestion item= items.get(i);
+                        Log.d(TAG,item.getQuestion());
 
-                        // Crate the object of display list
-                        DisplayList.DisplayListItem item = new DisplayList.DisplayListItem(
-                                items.get(i).getId(),
-                                items.get(i).getQuestion_id(),
-                                items.get(i).getQuestion_text(),
-                                "Description",
-                                1,
-                                1,
-                                1
-                        );
-                        DisplayList.ITEMS.add(item);
+                        DisplayQuestionListItem displayQuestionItem =
+                                new DisplayQuestionListItem();
+                        displayQuestionItem.setId(item.getId());
+                        displayQuestionItem.setQuestion(item.getQuestion());
+                        displayQuestionItem.setDescription(item.getDescription());
+                        displayQuestionItem.setViewCount(item.getViewCount());
+                        DisplayList.ITEMS.add(displayQuestionItem);
+                        DisplayList.ITEM_MAP.put(item.getiNumber(),displayQuestionItem);
                     }
                     mAdapter.notifyDataSetChanged();
                 }
@@ -166,7 +166,7 @@ public class PollFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<ListItem>> call, Throwable t) {
+            public void onFailure(Call<List<RemoteQuestion>> call, Throwable t) {
                 Log.d(TAG,"Could not fetch data");
             }
         });

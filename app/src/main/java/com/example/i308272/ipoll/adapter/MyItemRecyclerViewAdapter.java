@@ -8,21 +8,21 @@ import android.widget.TextView;
 
 import com.example.i308272.ipoll.PollFragment.OnListFragmentInteractionListener;
 import com.example.i308272.ipoll.R;
-import com.example.i308272.ipoll.model.DisplayList.DisplayListItem;
+import com.example.i308272.ipoll.model.DisplayQuestionListItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DisplayListItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link DisplayQuestionListItem} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DisplayListItem> mValues;
+    private final List<DisplayQuestionListItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyItemRecyclerViewAdapter(List<DisplayListItem> items, OnListFragmentInteractionListener listener) {
+    public MyItemRecyclerViewAdapter(List<DisplayQuestionListItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -39,9 +39,9 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         holder.mItem = mValues.get(position);
         holder.mQuestion.setText(mValues.get(position).getQuestion());
         holder.mDescription.setText(mValues.get(position).getDescription());
-        holder.mLikes.setText(String.valueOf(mValues.get(position).getLikes()));
-        holder.mComments.setText(String.valueOf(mValues.get(position).getComments()));
-        holder.mVotes.setText(String.valueOf(mValues.get(position).getVotes()));
+        holder.mLikes.setText(String.valueOf(mValues.get(position).getLikeCount()));
+        holder.mComments.setText(String.valueOf(mValues.get(position).getCommentCount()));
+        holder.mVotes.setText(String.valueOf(mValues.get(position).getViewCount()));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +69,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public final TextView mLikes;
         public final TextView mComments;
         public final TextView mVotes;
-        public DisplayListItem mItem;
+        public DisplayQuestionListItem mItem;
 
         public ViewHolder(View view) {
             super(view);

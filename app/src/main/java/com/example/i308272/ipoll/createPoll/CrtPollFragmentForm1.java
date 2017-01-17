@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.i308272.ipoll.R;
-import com.example.i308272.ipoll.model.CrtPollForm1Data;
+import com.example.i308272.ipoll.createPoll.model.CrtPollForm1Data;
 
 import java.util.ArrayList;
 
@@ -92,7 +92,7 @@ public class CrtPollFragmentForm1 extends Fragment {
 
 
         // Set Title According to the current Fragment
-        getActivity().setTitle("Question Details");
+        getActivity().setTitle("RemoteQuestion Details");
 
         // Get the view data and store the in the Private Object.
 

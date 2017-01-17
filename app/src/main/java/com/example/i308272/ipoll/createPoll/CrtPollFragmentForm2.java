@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.example.i308272.ipoll.R;
-import com.example.i308272.ipoll.model.CrtPollForm2Data;
+import com.example.i308272.ipoll.createPoll.model.CrtPollForm2Data;
 
 
 /**

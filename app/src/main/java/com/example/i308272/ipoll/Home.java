@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.example.i308272.ipoll.createPoll.CreatePoll;
 import com.example.i308272.ipoll.displayQuestion.DisplayQuestion;
-import com.example.i308272.ipoll.model.DisplayList;
+import com.example.i308272.ipoll.model.DisplayQuestionListItem;
 import com.example.i308272.ipoll.navigation.AboutUsFragment;
 import com.example.i308272.ipoll.navigation.ContactUsFragment;
 import com.example.i308272.ipoll.navigation.PriceFragment;
@@ -38,16 +38,18 @@ public class Home extends AppCompatActivity
                     {
 
 
-    //PollFragment poolList;
-
     private final String TAG = this.getClass().getName();
+
+    // Message is used to pass the id of the RemoteQuestion to DisplayQuestion
+    // Activity
     public static final String EXTRA_ID = "com.example.i308272.ipoll.model.ID";
+
+    PollFragment _frgPollList = null;
 
     //OnCreate method is called when activity is created
     // Notice that this method is also called when the
     // activity have to be recreated for example orientation
     // Change
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG,"OnCreate Called");
@@ -74,10 +76,6 @@ public class Home extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Fetch the data from internet as we will need that soon.
-
-
-
 
         // This check is very important. We the configutation of the app changes
         // ( orientation, resolution or language) the activity is recreated
@@ -88,9 +86,8 @@ public class Home extends AppCompatActivity
         // them to activity would
         if (savedInstanceState == null) {
             // Create Fragment only when activity is created first time
-            PollFragment _frgPollList = new PollFragment();
+            _frgPollList = new PollFragment();
             FragmentManager fm = getSupportFragmentManager();
-            //fm.popBackStack();
             fm.beginTransaction().replace(
                     R.id.content_fragment,
                     _frgPollList,
@@ -272,7 +269,7 @@ public class Home extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
     }
 
-    public void onListFragmentInteraction(DisplayList.DisplayListItem item) {
+    public void onListFragmentInteraction(DisplayQuestionListItem item) {
         Toast.makeText(this,"ItemSelected",Toast.LENGTH_LONG);
         // get the question Id and make a call to display the poll.
         Intent intent = new Intent(this, DisplayQuestion.class);

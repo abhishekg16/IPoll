@@ -1,4 +1,4 @@
-package com.example.i308272.ipoll.model;
+package com.example.i308272.ipoll.createPoll.model;
 
 import java.util.ArrayList;
 

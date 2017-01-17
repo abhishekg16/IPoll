@@ -1,14 +1,9 @@
 package com.example.i308272.ipoll.network;
+import com.example.i308272.ipoll.network.model.RemoteQuestion;
 
-import com.example.i308272.ipoll.model.DisplayList.DisplayListItem;
-import com.example.i308272.ipoll.model.QuestionDetails;
-import com.example.i308272.ipoll.network.model.ItemDetails;
-import com.example.i308272.ipoll.network.model.ListItem;
 
 import java.util.List;
-
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -30,9 +25,23 @@ public interface InsightWebServiceApi {
      **/
 
     @GET("questions/")
-    Call<List<ListItem>> getDisplayList();
+    Call<List<RemoteQuestion>> getQuestionList();
 
+    /*
+    This method return the detail of one particular question
+    This method should be used when we are using searching
+    question from INumber
+     */
     @GET("questions/")
-    Call<List<ItemDetails>> getQuestionDetails(@Query("id") String id);
+    Call<List<RemoteQuestion>> getQuestionLargeDetail(@Query("id") String id);
+
+
+    /*
+    This method provide the detail of a particular question
+    which was not present in the items which are provided
+    in get questionList
+     */
+    @GET("questions/")
+    Call<List<RemoteQuestion>> getQuestionOptionDetails(@Query("id") String id);
 
 }
