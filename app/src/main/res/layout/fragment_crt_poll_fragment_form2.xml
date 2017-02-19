@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:text="@string/hint_crt_poll_form2_create_options"
+            android:text="@string/crt_poll_form2_hint_create_options"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/fmtCrtPollForm2_tv_option"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
-                android:text="@string/hint_crt_poll_form2_add_more_options"
+                android:text="@string/crt_poll_form2_hint_add_more_options"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/fmtCrtPollForm2_bt_add_options" />
@@ -40,12 +40,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/fmtCrtPollForm2_tv_allow_comments"
-            android:text="@string/hint_crt_poll_form2_setting"
+            android:text="@string/crt_poll_form2_hint_setting"
             android:textSize="30sp"
             android:lineSpacingExtra="10sp" />
 
         <CheckBox
-            android:text="@string/hint_crt_poll_form2_multi_choice"
+            android:text="@string/crt_poll_form2_hint_multi_choice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/fmtCrtPOllForm2_cbMultiChoice" />
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/fmtCrtPollForm2_cb_allow_comments"
             android:checked="true"
-            android:text="@string/hint_crt_poll_form2_allow_comments"
+            android:text="@string/crt_poll_form2_hint_allow_comments"
             android:contentDescription="If you wan to allow comments please select this check box" />
 
         <Button

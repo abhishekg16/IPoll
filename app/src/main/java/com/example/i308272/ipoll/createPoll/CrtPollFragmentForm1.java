@@ -16,66 +16,37 @@ import com.example.i308272.ipoll.createPoll.model.CrtPollForm1Data;
 import java.util.ArrayList;
 
 /**
- * A fragment with a Google +1 button.
  * Activities that contain this fragment must implement the
  * {@link CrtPollFragmentForm1.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CrtPollFragmentForm1#newInstance} factory method to
- * create an instance of this fragment.
+ *
+ * Other we are not going to save any data from this fragment in the
+ * persistance bundle object because by default android store the data
+ * of the edittext on configuration changes
  */
 public class CrtPollFragmentForm1 extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    // The request code must be 0 or greater.
-    private static final int PLUS_ONE_REQUEST_CODE = 0;
-    // The URL to +1.  Must be a valid URL.
-    private final String PLUS_ONE_URL = "http://developer.android.com";
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    //private PlusOneButton mPlusOneButton;
+
+    private final String TAG = this.getClass().getName();
 
     // Data to be saved
-    private String question;
-    private String description;
-    private ArrayList<String> categories;
 
-    //
+
+    // Private data needed
     private View fmtView;
-
     private OnFragmentInteractionListener mListener;
 
+    //Constructor
     public CrtPollFragmentForm1() {
         // Required empty public constructor
+        // Do not delete this empty constructor because
+        // system need it when ever it wants to restart
+        // fragment
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CrtPollFragmentForm1.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CrtPollFragmentForm1 newInstance(String param1, String param2) {
-        CrtPollFragmentForm1 fragment = new CrtPollFragmentForm1();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -91,21 +62,14 @@ public class CrtPollFragmentForm1 extends Fragment {
                             }
         });
 
-
         // Set Title According to the current Fragment
-        getActivity().setTitle("RemoteQuestion Details");
-
-        // Get the view data and store the in the Private Object.
-
+        getActivity().setTitle("Create Question");
         return fmtView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        // Refresh the state of the +1 button each time the activity receives focus.
-        //mPlusOneButton.initialize(PLUS_ONE_URL, PLUS_ONE_REQUEST_CODE);
     }
 
     /*
@@ -113,54 +77,73 @@ public class CrtPollFragmentForm1 extends Fragment {
         filling this form
      */
     public void onNextButtonPressed(View view) {
+        String question;
+        String description;
+        ArrayList<String> categories;
+
         if (mListener != null) {
             // When the next button pressed pass the data to the parent activity
-            EditText qesView = (EditText)fmtView.findViewById(R.id.fmtCrtPollForm1_etQuestion);
-            EditText decView = (EditText)fmtView.findViewById(R.id.fmtCrtPollForm1_etDescription);
-            EditText categView = (EditText)fmtView.findViewById(R.id.fmtCrtPollForm1_etCategories);
+            EditText etQesView = (EditText)fmtView.findViewById(R.id.fmtCrtPollForm1_etQuestion);
+            EditText etDecView = (EditText)fmtView.findViewById(R.id.fmtCrtPollForm1_etDescription);
+            EditText etCatView = (EditText)fmtView.findViewById(R.id.fmtCrtPollForm1_etCategories);
 
-            question = qesView.getText().toString();
-            description = decView.getText().toString();
-            String tCategories[] =categView.getText().toString().split(",");
+            if ( etQesView == null || etCatView == null || etDecView == null) {
+                throw new NullPointerException("Exception : "+ TAG +" : view element is null ");
+            }
+
+            question = etQesView.getText().toString();
+            description = etDecView.getText().toString();
+
+            //  TODO : Develop test case to test how application
+            //  description can be empty so above toString method
+            // may return NULL. so in order to make the null handling
+            // easy internally we would consider the zero length string
+            // as the empty description.
+            if ( description.isEmpty()) {
+                description="";
+            }
+
+
+            String tCategories[] =etCatView.getText().toString().split(",");
+
+            // Local Checks
+            // 1. Question can not be empty
+            // 2. Question should contain at least 3 words
+            // 2. At least enter one category.
+
+            // TODO : In the server we have to put a check that category should
+            // be a valid word, it should be checked with dictionary
 
             boolean checkPassed = true;
 
             /*Basic checks*/
             //Check if question is not submitted them set change the color of text
             if (question.isEmpty()) {
-                qesView.setHintTextColor(Color.RED);
+                etQesView.setHintTextColor(Color.RED);
                 checkPassed = false;
             }
 
             //Check question contains less then three words
             if (question.split(" ").length < 3 && checkPassed) {
-                qesView.setHint(getContext().getResources().getString(R.string.error_msg_question_to_short));
+                etQesView.setHint(getContext().getResources().getString(R.string.error_msg_question_to_short));
                 checkPassed = false;
             }
 
             // At least you have to mention one category
             if (tCategories.length == 0) {
-                decView.setHint(  getContext().getResources().getString(R.string.error_msg_question_category_not_found)  );
+                etCatView.setHint(  getContext().getResources().getString(R.string.error_msg_question_category_not_found)  );
                 checkPassed = false;
             }
             /*End Basic Check*/
-
-            if (checkPassed == false)
+            if (!checkPassed)
                 return;
-
 
             categories = new ArrayList<String>();
 
             for (int i = 0; i < tCategories.length ; i++ )
                 categories.add(tCategories[i]);
 
-            // Save the submitted form data to instance variable and pass
-            // to activity
-            CrtPollForm1Data formData = new CrtPollForm1Data();
-            formData.setQuestion(question);
-            formData.setDescription(description);
-            formData.setCategories(categories);
-
+            CrtPollForm1Data formData = new CrtPollForm1Data(question,description,categories);
             mListener.onFragmentInteractionForm1(formData);
         }
     }
@@ -193,7 +176,6 @@ public class CrtPollFragmentForm1 extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteractionForm1(CrtPollForm1Data formData);
     }
 

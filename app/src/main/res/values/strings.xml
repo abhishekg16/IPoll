@@ -30,19 +30,25 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <!--String related to create poll-->
-    <string name="hint_enter_question">Enter you question or poll, maximum 200 word </string>
-    <string name="hint_enter_description">maximum 500 words</string>
-    <string name="hint_enter_categories">politics, sports, fun etc.</string>
+
+
+
+    <!--Create Poll Form 1-->
+    <string name="crt_poll_form1_tv_question">Question</string>
+    <string name="crt_poll_form1_tv_description">Question</string>
+    <string name="crt_poll_form1_hint_enter_question">Enter you question or poll, maximum 200 word </string>
+    <string name="crt_poll_form1_hint_enter_description">maximum 500 words</string>
+    <string name="crt_poll_form1_hint_enter_categories">politics, sports, fun etc.</string>
+
 
 
     <!--Create Poll Form 2 -->
-    <string name="hint_crt_poll_form2_create_options">Create Options</string>
-    <string name="hint_crt_poll_form2_enter_option">Enter Option</string>
-    <string name="hint_crt_poll_form2_add_more_options">Add Option</string>
-    <string name="hint_crt_poll_form2_setting">Other Settings</string>
-    <string name="hint_crt_poll_form2_multi_choice">Multi Choice</string>
-    <string name="hint_crt_poll_form2_allow_comments">Allow Comments</string>
+    <string name="crt_poll_form2_hint_create_options">Create Options</string>
+    <string name="crt_poll_form2_hint_enter_option">Enter Option</string>
+    <string name="crt_poll_form2_hint_add_more_options">Add Option</string>
+    <string name="crt_poll_form2_hint_setting">Other Settings</string>
+    <string name="crt_poll_form2_hint_multi_choice">Multi Choice</string>
+    <string name="crt_poll_form2_hint_allow_comments">Allow Comments</string>
 
     <string name="error_msg_question_to_short">Question must contain at least 3 word</string>
     <string name="error_msg_question_category_not_found">"Please mention category like : politics, sports, fun"</string>

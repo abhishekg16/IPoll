@@ -15,7 +15,7 @@
                 android:weightSum="1">
 
                 <TextView
-                    android:text="Question"
+                    android:text="@string/crt_poll_form1_tv_question"
                     android:layout_width="match_parent"
                     android:layout_height="57dp"
                     android:id="@+id/fmtCrtPollForm1_tvQuestion"
@@ -27,7 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:hint="@string/hint_enter_question"
+                    android:hint="@string/crt_poll_form1_hint_enter_question"
                     android:ems="10"
                     android:id="@+id/fmtCrtPollForm1_etQuestion"
                     android:lines="3"
@@ -50,7 +50,7 @@
                     android:ems="10"
                     android:id="@+id/fmtCrtPollForm1_etDescription"
                     android:layout_below="@id/fmtCrtPollForm1_tvDescription"
-                    android:hint="@string/hint_enter_description" />
+                    android:hint="@string/crt_poll_form1_hint_enter_description" />
 
                 <TextView
                     android:text="Categories"
@@ -65,7 +65,7 @@
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/fmtCrtPollForm1_etCategories"
-                    android:hint="@string/hint_enter_categories"
+                    android:hint="@string/crt_poll_form1_hint_enter_categories"
                     android:layout_weight="2.97" />
             </LinearLayout>
 

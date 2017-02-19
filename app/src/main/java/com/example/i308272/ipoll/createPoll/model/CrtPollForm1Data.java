@@ -15,14 +15,25 @@ public class CrtPollForm1Data {
         categories = new ArrayList<String>();
     }
 
+    public CrtPollForm1Data(String question,
+                            String description,
+                            ArrayList<String> categories) {
+        this.question = question;
+        this.description = description;
+        this.categories = new ArrayList<String>();
+        if (categories.size() > 0){
+            this.categories.addAll(categories);
+        }
+    }
+
     public CrtPollForm1Data(CrtPollForm1Data formData)
     {
         this.question = formData.question;
         this.description  = formData.description;
-//        if (!formData.categories.isEmpty()){
-//            this.categories.addAll(formData.categories);
-//        }
-
+        this.categories = new ArrayList<String>();
+        if (formData.categories.size() != 0) {
+            categories.addAll(formData.categories);
+        }
     }
 
     public String getQuestion() {
