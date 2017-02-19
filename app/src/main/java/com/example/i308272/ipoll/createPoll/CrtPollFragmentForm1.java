@@ -1,6 +1,7 @@
 package com.example.i308272.ipoll.createPoll;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -107,6 +108,10 @@ public class CrtPollFragmentForm1 extends Fragment {
         //mPlusOneButton.initialize(PLUS_ONE_URL, PLUS_ONE_REQUEST_CODE);
     }
 
+    /*
+        This method is called when user has present next Button after
+        filling this form
+     */
     public void onNextButtonPressed(View view) {
         if (mListener != null) {
             // When the next button pressed pass the data to the parent activity
@@ -116,13 +121,45 @@ public class CrtPollFragmentForm1 extends Fragment {
 
             question = qesView.getText().toString();
             description = decView.getText().toString();
-           // categories.add(categView.getText().toString());
+            String tCategories[] =categView.getText().toString().split(",");
 
+            boolean checkPassed = true;
+
+            /*Basic checks*/
+            //Check if question is not submitted them set change the color of text
+            if (question.isEmpty()) {
+                qesView.setHintTextColor(Color.RED);
+                checkPassed = false;
+            }
+
+            //Check question contains less then three words
+            if (question.split(" ").length < 3 && checkPassed) {
+                qesView.setHint(getContext().getResources().getString(R.string.error_msg_question_to_short));
+                checkPassed = false;
+            }
+
+            // At least you have to mention one category
+            if (tCategories.length == 0) {
+                decView.setHint(  getContext().getResources().getString(R.string.error_msg_question_category_not_found)  );
+                checkPassed = false;
+            }
+            /*End Basic Check*/
+
+            if (checkPassed == false)
+                return;
+
+
+            categories = new ArrayList<String>();
+
+            for (int i = 0; i < tCategories.length ; i++ )
+                categories.add(tCategories[i]);
+
+            // Save the submitted form data to instance variable and pass
+            // to activity
             CrtPollForm1Data formData = new CrtPollForm1Data();
             formData.setQuestion(question);
             formData.setDescription(description);
             formData.setCategories(categories);
-
 
             mListener.onFragmentInteractionForm1(formData);
         }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:layout_margin="10dp"
+    android:padding="2dp">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/option_label_24dp"
+        android:id="@+id/imageView2"
+        android:layout_weight="0.70"
+        android:layout_margin="3dp"
+        android:padding="3dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/hint_crt_poll_form2_enter_option"
+        android:ems="10"
+        android:id="@+id/ct_option_etOptionText"
+        android:layout_weight="1"
+        android:layout_margin="3dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_delete_black_24dp"
+        android:id="@+id/ct_option_ibtDelete"
+        android:layout_weight="1"
+        android:layout_margin="3dp" />
+</LinearLayout>

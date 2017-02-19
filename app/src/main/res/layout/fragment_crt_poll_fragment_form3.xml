@@ -17,98 +17,13 @@
             android:text="Participant Details Required"
             android:textSize="30sp" />
 
-        <TableLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fmtCrtPollForm3_recycler_options"
+            android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="1">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <CheckBox
-                    android:text="Name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fmtCrtPollForm3_cbName"
-                    android:textSize="18sp" />
-
-                <CheckBox
-                    android:text="Optional"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fmtCrtPollForm3_cbNameOptional"
-                    android:textSize="18sp"
-                    android:checked="true" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <CheckBox
-                    android:text="Age"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fmtCrtPollForm3_cbAge"
-                    android:gravity="start"
-                    android:textSize="18sp" />
-
-                <CheckBox
-                    android:text="Optional"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fmtCrtPollForm3_cbAgeOption"
-                    android:textSize="18sp"
-                    android:checked="true" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:text="Gender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fmtCrtPollForm3_cbGender"
-                    android:layout_weight="1"
-                    android:textSize="18sp" />
-
-                <CheckBox
-                    android:text="Optional"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fmtCrtPollForm3_cbGenderOption"
-                    android:layout_weight="1"
-                    android:textSize="18sp"
-                    android:checked="true" />
+            android:layout_height="200dp"/>
 
 
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <CheckBox
-                    android:text="Location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fmtCrtPollForm3_cbLocation"
-                    android:textSize="18sp" />
-
-                <CheckBox
-                    android:text="Optional"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fmtCrtPollForm3_cbLocationOptional"
-                    android:textSize="18sp"
-                    android:checked="true" />
-            </TableRow>
-
-        </TableLayout>
 
         <TextView
             android:text="Access Type"

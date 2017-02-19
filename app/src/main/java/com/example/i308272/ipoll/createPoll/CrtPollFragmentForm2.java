@@ -3,15 +3,27 @@ package com.example.i308272.ipoll.createPoll;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.i308272.ipoll.R;
+import com.example.i308272.ipoll.adapter.CreateOptionDataAdapter;
+import com.example.i308272.ipoll.adapter.MyItemRecyclerViewAdapter;
+import com.example.i308272.ipoll.constants.ProjectConstants;
 import com.example.i308272.ipoll.createPoll.model.CrtPollForm2Data;
+
+import java.util.ArrayList;
 
 
 /**
@@ -22,7 +34,7 @@ import com.example.i308272.ipoll.createPoll.model.CrtPollForm2Data;
  * Use the {@link CrtPollFragmentForm2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CrtPollFragmentForm2 extends Fragment {
+public class CrtPollFragmentForm2 extends Fragment implements CreateOptionDataAdapter.OnItemRemovedListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,9 +44,21 @@ public class CrtPollFragmentForm2 extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private final String TAG = this.getClass().getName();
+    private final String NUMBER_OF_OPTIONS = "number_of_options";
+
+    private ArrayList<String> optionTextList;
+
+    /* numOptions denotes number of options present in current transaction  */
+    private int numOptions;
+
     private View fmtForm2;
 
     private OnFragmentInteractionListener mListener;
+
+    private RecyclerView mRecyclerView;
+    private CreateOptionDataAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     public CrtPollFragmentForm2() {
         // Required empty public constructor
@@ -78,9 +102,10 @@ public class CrtPollFragmentForm2 extends Fragment {
         addMoreOptionButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                onAddMoreOptionsClicked(view);
+                onAddOptionsClicked(view);
             }
         });
+
         Button nextButton = (Button) fmtForm2.findViewById(R.id.fmtCrtPollForm2_bt_next);
         nextButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -88,31 +113,82 @@ public class CrtPollFragmentForm2 extends Fragment {
                 onNextButtonPressed(v);
             }
         });
+
+        // Recycler View
+        mRecyclerView = (RecyclerView)fmtForm2.findViewById(R.id.fmtCrtPollForm2_recycler_options);
+
+        // set LayoutManager
+        mLayoutManager = new LinearLayoutManager(this.getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        optionTextList = new ArrayList<String>();
+
+        // set Adapter
+        mAdapter = new CreateOptionDataAdapter(optionTextList,this);
+        mRecyclerView.setAdapter(mAdapter);
+
+
+        // If fragment is restarted
+        if ( savedInstanceState != null) {
+            // check the number of options
+            numOptions = savedInstanceState.getInt(NUMBER_OF_OPTIONS);
+        }
+        else {
+            for(int i = 0 ; i < ProjectConstants.NUM_OF_DEFAULT_OPTIONS ;i++)
+            {
+              optionTextList.add("");
+            }
+            mAdapter.notifyDataSetChanged();
+        }
+
         return fmtForm2;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    /*
+     */
+    private String getOptionText(int optionIndex ){
+        return "OPTION_TEXT_" + optionIndex;
+    }
+
+    // Some important point while we are saving instance state
+    // 1. By defaut the Android save the state of state of View which are
+    //      present in the code. For example the values present in the EditText
+    //      or scroll position in the ListView
+    // 2. In order for Android System to restore your view states each view must have
+    //      a unique id , supplied by android:id attribute
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        String etContent = "";
+
+        outState.putInt(NUMBER_OF_OPTIONS,numOptions);
+
+        // Store All the options
+        // By default we have two EditText for the option to for
+        // those default EditText View Android will store the value
+        // of those two EditText View. But for simplicity option
+        // we are storing values present in all the EditText Views
+
+        for (int i = 1 ; i <= numOptions ; i++){
+            //etContent = optionList.get(i).getText().toString();
+            //outState.putString( getOptionText(i), etContent );
+        }
+
+        super.onSaveInstanceState(outState);
+
+    }
+
+
     public void onNextButtonPressed(View v) {
         if (mListener != null) {
-            // Fetch the Data from view fields and populate them
-            CrtPollForm2Data formData = new CrtPollForm2Data();
-            // Right not we have fixed to only four options later
-            // we need to modify this code to take care of this limitation
-
-            // Pick options
-            EditText option1 = (EditText) fmtForm2.findViewById(R.id.fmtCrtPollForm2_et_option1);
-            EditText option2 = (EditText) fmtForm2.findViewById(R.id.fmtCrtPollForm2_et_option2);
-            EditText option3 = (EditText) fmtForm2.findViewById(R.id.fmtCrtPollForm2_et_option3);
-            EditText option4 = (EditText) fmtForm2.findViewById(R.id.fmtCrtPollForm2_et_option4);
-
+            saveOptionText();
             // Check boxes
             boolean isMultiChoice = ((CheckBox) fmtForm2.findViewById(R.id.fmtCrtPOllForm2_cbMultiChoice)).isChecked();
             boolean isAllowComments = ((CheckBox) fmtForm2.findViewById(R.id.fmtCrtPollForm2_cb_allow_comments)).isChecked();
 
-            formData.set_option(option1.toString());
-            formData.set_option(option2.toString());
-            formData.set_option(option3.toString());
-            formData.set_option(option4.toString());
+            CrtPollForm2Data formData = new CrtPollForm2Data(optionTextList,
+                    isAllowComments,
+                    isMultiChoice);
 
             mListener.onFragmentInteractionForm2(formData);
         }
@@ -120,12 +196,29 @@ public class CrtPollFragmentForm2 extends Fragment {
         {
 
         }
+    }
+    
+    /*
+    This method removes and option and return true if option is removed successfully
+     */
 
+    boolean removeAnOption(View view,int optionIndex){
+        // Check if option index is valid
+        if (optionIndex > numOptions) {
+            Log.d(TAG,"removeAnOption : Invalid option index");
+            return false;
+        }
+        return true;
     }
 
 
-    public void onAddMoreOptionsClicked(View v){
-        // Need to be implemented
+    public void onAddOptionsClicked(View v){
+            // increment local counter
+            //numOptions++;
+            saveOptionText();
+            optionTextList.add("");
+            //mAdapter.incrementDataSet();
+            mAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -145,6 +238,27 @@ public class CrtPollFragmentForm2 extends Fragment {
         mListener = null;
     }
 
+    public void saveOptionText() {
+        CreateOptionDataAdapter.ViewHolder optionViewHolder;
+        for (int i = 0 ; i < mRecyclerView.getAdapter().getItemCount();i++)
+        {
+              RecyclerView.ViewHolder viewHolder = mRecyclerView.findViewHolderForAdapterPosition(i);
+              if (viewHolder != null && viewHolder instanceof CreateOptionDataAdapter.ViewHolder){
+                  optionViewHolder = (CreateOptionDataAdapter.ViewHolder) viewHolder;
+                  mAdapter.updateOptionText(optionViewHolder.etOptionText.getText().toString(),
+                          i);
+              }
+        }
+    }
+
+    @Override
+    public void onItemRemoved() {
+        saveOptionText();
+    }
+
+
+
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -159,4 +273,6 @@ public class CrtPollFragmentForm2 extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteractionForm2(CrtPollForm2Data formData);
     }
+
+
 }

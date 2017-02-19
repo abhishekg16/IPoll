@@ -40,6 +40,7 @@ public class PollFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
     private InsightWebServiceApi networkClient = null;
     MyItemRecyclerViewAdapter mAdapter;
+    private EndlessRecyclerViewScrollListener scrollListener;
 
     public final String TAG = this.getClass().getName();
 
@@ -77,13 +78,15 @@ public class PollFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
+        LinearLayoutManager linearLayoutManager = null;
 
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                linearLayoutManager = new LinearLayoutManager(context);
+                recyclerView.setLayoutManager(linearLayoutManager);
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
@@ -91,13 +94,36 @@ public class PollFragment extends Fragment {
             mAdapter = new MyItemRecyclerViewAdapter(DisplayList.ITEMS,
                                     mListener);
             recyclerView.setAdapter(mAdapter);
+
+            // Set the scroll listener
+            if(linearLayoutManager != null) {
+                scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+                    @Override
+                    public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                        loadNextDataPage(page);
+                    }
+                };
+            }
+            recyclerView.addOnScrollListener(scrollListener);
         }
         return view;
+    }
+
+    // Append the next page of data into the adapter
+    // This method probably sends out a network request and appends new data items to your adapter.
+    public void loadNextDataPage(int page){
+        // Send an API request to retrieve appropriate paginated data
+        //  --> Send the request including an offset value (i.e `page`) as a query parameter.
+        //  --> Deserialize and construct new model objects from the API response
+        //  --> Append the new data objects to the existing set of items inside the array of items
+        //  --> Notify the adapter of the new items made with `notifyItemRangeInserted()`
     }
 
     public void notifyDataChange(){
         mAdapter.notifyDataSetChanged();
     }
+
+
 
 
     @Override

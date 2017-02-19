@@ -11,6 +11,8 @@ import com.example.i308272.ipoll.createPoll.model.CrtPollForm2Data;
 import com.example.i308272.ipoll.createPoll.model.CrtPollForm3Data;
 import com.example.i308272.ipoll.createPoll.model.CrtPollForm4Data;
 
+import java.util.ArrayList;
+
 public class CreatePoll extends AppCompatActivity
                         implements  CrtPollFragmentForm1.OnFragmentInteractionListener,
                                     CrtPollFragmentForm2.OnFragmentInteractionListener,
@@ -60,7 +62,7 @@ public class CreatePoll extends AppCompatActivity
 
     // Form 2
     public void onFragmentInteractionForm2(CrtPollForm2Data formData){
-       CrtPollForm2Data form2Data = new CrtPollForm2Data(formData);
+        form2Data = new CrtPollForm2Data(formData);
        // Move to the next fragment
        CrtPollFragmentForm3 _fmtForm3 = new CrtPollFragmentForm3();
         FragmentManager fm = getSupportFragmentManager();
@@ -70,8 +72,13 @@ public class CreatePoll extends AppCompatActivity
     }
 
     // Form 3
-    public void onFragmentInteractionForm3(Uri uri){
-
+    public void onFragmentInteractionForm3(CrtPollForm3Data formData){
+        form3Data = new CrtPollForm3Data(formData);
+        FragmentManager fm = getSupportFragmentManager();
+        CrtPollFragmentForm4 _fmtForm4 = new CrtPollFragmentForm4();
+        fm.beginTransaction().add(R.id.actCrtPoll_fragment,
+                _fmtForm4,
+                _fmtForm4.getTag()).addToBackStack(null).commit();
     }
 
     // Form 4
@@ -83,4 +90,16 @@ public class CreatePoll extends AppCompatActivity
     public void onFragmentInteractionForm5(Uri uri){
 
     }
+
+    public String getQuestion(){
+        return form1Data.getQuestion();
+    }
+    public String getDescription(){
+        return form1Data.getDescription();
+    }
+
+    public ArrayList<String> getOptions(){
+        return form2Data.get_options();
+    }
+
 }

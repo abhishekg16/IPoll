@@ -12,28 +12,24 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:text="TextView"
+            android:text="What is the meaning of your name ?"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/fmtCrtPollForm4_tvQuestion" />
 
         <TextView
-            android:text="TextView"
+            android:text="Describe the meaning of your name."
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/fmtCrtPollForm4_tvDescription" />
 
-        <TableLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fmtCrtPollForm4_recycler_options"
+            android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </TableLayout>
-
+            android:layout_height="200dp"/>
         <Button
-            android:text="Submit"
+            android:text="Publish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/fmtCrtPollForm4_btSubmit" />

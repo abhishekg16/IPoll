@@ -12,12 +12,23 @@ public class CrtPollForm3Data {
     boolean _isGender;
     boolean _isGenderOptional;
     boolean _isLocation;
-    boolean is_isLocationOptional;
+    boolean _isLocationOptional;
 
     public CrtPollForm3Data() {
         _isNameOptional = false;
         _isAgeOptional = false;
         _isGenderOptional = false;
+    }
+
+    public CrtPollForm3Data(CrtPollForm3Data formData) {
+        this._isName = formData._isName;
+        this._isNameOptional = formData._isNameOptional;
+        this._isAge = formData._isAge;
+        this._isAgeOptional = formData._isAgeOptional;
+        this._isGender = formData._isGender;
+        this._isGenderOptional = formData._isGenderOptional;
+        this._isLocation = formData._isLocation;
+        this._isLocationOptional = formData._isLocationOptional;
     }
 
     public boolean is_isName() {
@@ -76,11 +87,11 @@ public class CrtPollForm3Data {
         this._isLocation = _isLocation;
     }
 
-    public boolean is_isLocationOptional() {
-        return is_isLocationOptional;
+    public boolean isLocationOptional() {
+        return _isLocationOptional;
     }
 
-    public void setIs_isLocationOptional(boolean is_isLocationOptional) {
-        this.is_isLocationOptional = is_isLocationOptional;
+    public void set_isLocationOptional(boolean _isLocationOptional) {
+        this._isLocationOptional = _isLocationOptional;
     }
 }

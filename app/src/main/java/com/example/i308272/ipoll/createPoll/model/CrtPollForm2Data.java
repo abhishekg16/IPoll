@@ -17,6 +17,15 @@ public class CrtPollForm2Data {
         _multiOptions = false;
     }
 
+    public CrtPollForm2Data(ArrayList<String> optionTextList,
+                            boolean _allowComments,
+                            boolean _multiOptions){
+        _options = new ArrayList<String>();
+        _options.addAll(optionTextList);
+        this._allowComments = _allowComments;
+        this._multiOptions = _multiOptions;
+    }
+
     public CrtPollForm2Data(CrtPollForm2Data formdata){
         _options = new ArrayList<String>();
         _options.addAll(formdata.get_options());
